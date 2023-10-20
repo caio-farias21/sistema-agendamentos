@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 void welcome(char * nome) {
     printf("Olá,\n");
@@ -8,6 +9,7 @@ void welcome(char * nome) {
 void main_menu() {
     
 }
+
 Olá,
 <Nome completo>
 

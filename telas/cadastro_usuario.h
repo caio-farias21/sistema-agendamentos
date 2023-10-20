@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 Cadastro de usuário
 
 Nome completo:

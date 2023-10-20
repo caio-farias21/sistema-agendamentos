@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 Horários
 
 [ 0 ] - Voltar

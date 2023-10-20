@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 Detalhes de <Nome da sala>
 
 11:00 - 11:50 | Acsa Mendes Santos
