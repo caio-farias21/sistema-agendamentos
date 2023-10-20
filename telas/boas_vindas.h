@@ -1,3 +1,13 @@
+
+void welcome(char * nome) {
+    printf("Olá,\n");
+    printf("%s\n\n", *nome);
+    printf("----------------------\n\n");
+}
+
+void main_menu() {
+    
+}
 Olá,
 <Nome completo>
 
