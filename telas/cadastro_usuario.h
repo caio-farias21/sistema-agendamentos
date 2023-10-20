@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+void tela_cadastro_usuario() {
+
+}
+opcoes = {"Cancelar", "Cadastrar", "Reservar"}
+void tela(char * titulo, char[])
+
 Cadastro de usuário
 
 Nome completo:

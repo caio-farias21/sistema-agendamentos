@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+void tela_cadastro_sala() {
+    printf("Cadastro de sala\n\n");
+    printf("Nome da sala: ");
+}
+
+
+
 Cadastro de sala
 
 Nome da sala: 

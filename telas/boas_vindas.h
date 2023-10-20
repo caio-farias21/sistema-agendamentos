@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-void welcome(char * nome) {
+void tela_boas_vindas(char * nome) {
     printf("Olá,\n");
     printf("%s\n\n", *nome);
     printf("----------------------\n\n");
 }
 
-void main_menu() {
+void tela_menu() {
     
 }
 
