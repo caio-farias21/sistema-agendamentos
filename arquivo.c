@@ -1,3 +1,4 @@
+#include "auth.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -24,6 +25,20 @@ bool confirmar() {
 }
 
 int main() {
-    ola("Acsa Mendes Santos");
-    telas("Menu", opcoes);
+    /*
+    char username[100], senha[100];
+    scanf("%s", username);
+    scanf("%s", senha);
+    printf("%d\n", login(username, senha));
+    */
+
+    /*
+    char username[100], senha[100], nome[100];
+    scanf("%s", username);
+    scanf("%s", senha);
+    scanf("%s", nome);
+    cadastrar_usuario(username, senha, nome);
+    */
+
+    cadastrar_sala("ts");
 }
