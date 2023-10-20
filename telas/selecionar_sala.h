@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 Sala
 
 [ 0 ] - Voltar
