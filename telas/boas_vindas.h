@@ -10,6 +10,7 @@ void tela_menu() {
     
 }
 
+/*
 Olá,
 <Nome completo>
 
@@ -26,3 +27,4 @@ se ADMIN:
 [ 4 ] - Cadastro de salas
 
 Selecione uma opçao: 
+*/

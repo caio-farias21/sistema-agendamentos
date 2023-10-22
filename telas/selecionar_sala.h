@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+/*
 Sala
 
 [ 0 ] - Voltar
@@ -8,3 +9,4 @@ Sala
 [ 3 ] - Sala de computadores 4
 
 Selecione a sala: 
+*/

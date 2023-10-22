@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
 bool login(char * username, char * senha) {
     FILE * data = fopen("./database/users.txt", "r");//no ponteiro data armazene o arquivo no caminho no modo read
@@ -32,13 +33,12 @@ bool cadastrar_usuario(char * username, char * senha, char * nome){
 
 bool cadastrar_sala(char * nome){
     FILE * data = fopen("./database/salas.txt", "a");
-    FILE * idx = fopen("./database/configs/salas_idx.txt", "w");
-    int n = 0;
-    fscanf(idx, "%i", &n);
+    FILE * idx = fopen("./database/configs/salas_idx.txt", "w+");
+    int n;
+    fscanf(idx, "%d", &n);
     printf("%d\n", n);
-    fprintf(idx, "%i", n + 1);
+    //fprintf(idx, "%d", n + 1);
     fclose(data);
     fclose(idx);
-    
 }
 

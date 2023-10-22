@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+/*
 Horários
 
 [ 0 ] - Voltar
@@ -8,3 +9,4 @@ Horários
 [ 3 ] - 14:31 - 15:10
 
 Selecione o horário: 
+*/

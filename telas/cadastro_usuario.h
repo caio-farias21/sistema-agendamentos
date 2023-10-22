@@ -6,6 +6,7 @@ void tela_cadastro_usuario() {
 opcoes = {"Cancelar", "Cadastrar", "Reservar"}
 void tela(char * titulo, char[])
 
+/*
 Cadastro de usuário
 
 Nome completo:
@@ -16,3 +17,4 @@ Senha:
 1 - Cadastrar 
 
 Selecione uma opção: 
+*/

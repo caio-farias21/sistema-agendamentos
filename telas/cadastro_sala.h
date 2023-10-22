@@ -5,8 +5,7 @@ void tela_cadastro_sala() {
     printf("Nome da sala: ");
 }
 
-
-
+/*
 Cadastro de sala
 
 Nome da sala: 
@@ -15,3 +14,4 @@ Nome da sala:
 1 - Cadastrar
 
 Selecione uma opção: 
+*/
