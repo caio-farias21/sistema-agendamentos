@@ -3,11 +3,13 @@
 #include <string.h>
 #include <stdlib.h>
 
+// Função que verifica se há credenciais válidas no arquivo users.txt
 bool login(char * username, char * senha) {
-    FILE * data = fopen("./database/users.txt", "r");//no ponteiro data armazene o arquivo no caminho no modo read
-    char a[100];
-    char b[100];
-    char c[100];
+    FILE * data = fopen("./database/users.txt", "r");
+    if (data == NULL)
+        return false;
+
+    char a[100], b[100], c[100];
     while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
         if (strcmp(a, username) == 0 && strcmp(b, senha) == 0) {
             //boas_vindas(c);
@@ -19,11 +21,43 @@ bool login(char * username, char * senha) {
     return false;
 }
 
-//a fazer
-//verificar se alguma das entradas tem virgula
-//verificar se já existe username igual
+bool validate(char * str) {
+    return !(strstr(str, ",") || strstr(str, "\n"));
+}
+
+// Verifica se o username está em users.txt
+bool existe_usuario(char * username) {
+    FILE * data = fopen("./database/users.txt", "r");
+    if (data == NULL)
+        return false; // Configurar erro
+
+    char a[100], b[100], c[100];
+    while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
+        if (strcmp(a, username) == 0) {
+            fclose(data);
+            return true;
+        }
+    }
+    fclose(data);
+    return false;
+}
+
+// Insere credenciais no arquivo users.txt
 bool cadastrar_usuario(char * username, char * senha, char * nome){
     FILE * data = fopen("./database/users.txt", "a");
+
+    if (existe_usuario(username)) {
+        fclose(data);
+        printf("NOME DE USUÁRIO EM USO!\n");
+        return false;
+    }
+
+    if (!validate(username) || !validate(senha) || !validate(nome)) {
+        fclose(data);
+        printf("CARACTER INVÁLIDO (não utilize vírgulas)\n");
+        return false;
+    }
+
     char template[300];
     sprintf(template, "%s,%s,%s\n", username, senha, nome);
     fputs(template, data);
@@ -31,6 +65,8 @@ bool cadastrar_usuario(char * username, char * senha, char * nome){
     return true;
 }
 
+// Insere salas disponiveis no arquivo salas.txt
+// TODO: Finalizar função
 bool cadastrar_sala(char * nome){
     FILE * data = fopen("./database/salas.txt", "a");
     FILE * idx = fopen("./database/configs/salas_idx.txt", "w+");
