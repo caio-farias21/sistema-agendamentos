@@ -20,7 +20,6 @@ Menu
 
 [ 0 ] - Sair
 [ 1 ] - Reservar sala
-[ 2 ] - Ver detalhes
 
 se ADMIN:
 [ 3 ] - Cadastrar novo usuario
