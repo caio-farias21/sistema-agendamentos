@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void ola(char * nome) {
-    printf("Olá,\n%s\n\n", nome);
+    printf("\nOlá,\n%s\n\n", nome);
 }
 
 void telas(char * titulo, char opcoes[3][10]) {

@@ -1,3 +1,4 @@
+#include "telas.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -12,11 +13,12 @@ bool login(char * username, char * senha) {
     char a[100], b[100], c[100];
     while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
         if (strcmp(a, username) == 0 && strcmp(b, senha) == 0) {
-            //boas_vindas(c);
+            ola(c);
             fclose(data);
             return true;
         }
     }
+    printf("CREDENCIAIS INVÁLIDAS!\n");
     fclose(data);
     return false;
 }

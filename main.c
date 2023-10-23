@@ -10,13 +10,18 @@ void limpar_buffer() {
 }
 
 int main() {
-    /*
+    /* LOGIN */
     char username[100], senha[100];
+    printf("Nome de usuario: ");
     scanf("%s", username);
-    scanf("%s", senha);
-    printf("%d\n", login(username, senha));
-    */
 
+    printf("Senha: ");
+    scanf("%s", senha);
+
+    login(username, senha);
+
+    /* CADASTRAR USUARIO */
+    /*
     char username[100], senha[100], nome[100];
     scanf("%s", username);
     scanf("%s", senha);
@@ -28,8 +33,5 @@ int main() {
         printf("CADASTRADO!\n");
     else
         printf("FALHA NO CADASTRO!\n");
-
-    /*
-    cadastrar_sala("ts");
     */
 }
