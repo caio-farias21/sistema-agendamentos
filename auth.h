@@ -34,6 +34,14 @@ bool existe_usuario(char * username) {
         return false; // Configurar erro
 
     char a[100], b[100], c[100];
+
+    for (;fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF;) {
+        if (strcmp(a, username) == 0) {
+            fclose(data);
+            return true;
+        }
+    }
+
     while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
         if (strcmp(a, username) == 0) {
             fclose(data);

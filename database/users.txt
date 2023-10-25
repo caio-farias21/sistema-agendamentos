@@ -1,1 +1,3 @@
 caio_farias,1234,Caio Pereira Farias
+emily,1234,Emily Soares
+acsa,1234,Acsa

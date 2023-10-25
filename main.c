@@ -1,4 +1,5 @@
 #include "auth.h"
+#include "tipos.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -10,7 +11,6 @@ void limpar_buffer() {
 }
 
 int main() {
-    /* LOGIN */
     char username[100], senha[100];
     printf("Nome de usuario: ");
     scanf("%s", username);
@@ -18,7 +18,16 @@ int main() {
     printf("Senha: ");
     scanf("%s", senha);
 
-    login(username, senha);
+    if (!login(username, senha))
+        return 0;
+
+    /* Árvore de opções */
+    /*
+        [
+            voltar, 
+            [selecionar_sala, reservar_sala]
+        ]
+    */
 
     /* CADASTRAR USUARIO */
     /*

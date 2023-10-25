@@ -15,3 +15,8 @@ Nome da sala:
 
 Selecione uma opção: 
 */
+
+/*
+Função que recebe um array de números válidos,
+e uma mensagem para o scanf e 
+*/

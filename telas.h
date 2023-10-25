@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+typedef void (*Func)()
+
 void ola(char * nome) {
     printf("\nOlá,\n%s\n\n", nome);
 }
 
-void telas(char * titulo, char opcoes[3][10]) {
+void telas(char * titulo, Func opcoes[10]) {
     printf("%s\n\n", titulo);
-    for (int i = 0; i < 3; i++) {
-        printf("[ %d ] - %s\n", i + 1, opcoes[i]);
-    }
 }
 
 bool confirmar() {
