@@ -1,0 +1,34 @@
+Cadastro de sala
+
+Nome da sala: 
+
+0 - Cancelar
+1 - Cadastrar
+
+Selecione uma opção: 
+------------------------------
+Detalhes de <Nome da sala>
+
+11:00 - 11:50 | Acsa Mendes Santos
+16:40 - 17:30 | Roberto Gomes Bollanos
+
+0 - Voltar
+------------------------------
+Horários
+
+[ 0 ] - Voltar
+[ 1 ] - 11:00 - 11:50
+[ 2 ] - 13:50 - 14:30
+[ 3 ] - 14:31 - 15:10
+
+Selecione o horário: 
+------------------------------
+Sala
+
+[ 0 ] - Voltar
+[ 1 ] - Sala de computadores 1
+[ 2 ] - Sala de pós-graduacao
+[ 3 ] - Sala de computadores 4
+
+Selecione a sala:
+------------------------------

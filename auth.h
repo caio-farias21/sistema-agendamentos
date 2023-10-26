@@ -5,22 +5,28 @@
 #include <stdlib.h>
 
 // Função que verifica se há credenciais válidas no arquivo users.txt
-bool login(char * username, char * senha) {
+int login(char * username, char * senha) {
     FILE * data = fopen("./database/users.txt", "r");
     if (data == NULL)
         return false;
 
-    char a[100], b[100], c[100];
-    while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
+    char a[100], b[100], c[100], d[100];
+    while (fscanf(data, "%[^,],%[^,],%[^,],%[^\n]\n", a, b, c, d) != EOF) {
         if (strcmp(a, username) == 0 && strcmp(b, senha) == 0) {
-            ola(c);
+            limpar_tela();
+            ola(d);
             fclose(data);
-            return true;
+            if (strcmp(c, "1") == 0)
+                return 1;
+            else if (strcmp(c, "0") == 0)
+                return 0;
+            else
+                return -1;
         }
     }
     printf("CREDENCIAIS INVÁLIDAS!\n");
     fclose(data);
-    return false;
+    return -1;
 }
 
 bool validate(char * str) {
@@ -69,7 +75,7 @@ bool cadastrar_usuario(char * username, char * senha, char * nome){
     }
 
     char template[300];
-    sprintf(template, "%s,%s,%s\n", username, senha, nome);
+    sprintf(template, "%s,%s,0,%s\n", username, senha, nome);
     fputs(template, data);
     fclose(data);
     return true;
@@ -87,4 +93,3 @@ bool cadastrar_sala(char * nome){
     fclose(data);
     fclose(idx);
 }
-

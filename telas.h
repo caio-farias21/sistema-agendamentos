@@ -1,21 +1,42 @@
+#include "helpers.h"
 #include <stdio.h>
 #include <stdbool.h>
 
-typedef void (*Func)()
-
 void ola(char * nome) {
-    printf("\nOlá,\n%s\n\n", nome);
+    printf("\nOlá,\n%s\n", nome);
 }
 
-void telas(char * titulo, Func opcoes[10]) {
-    printf("%s\n\n", titulo);
+void limpar_tela() {
+    system("clear");
+}
+
+int tela_padrao(char * titulo, char * opcoes[], int n) {
+    printf("\n%s\n\n", titulo);
+    printf("[ 0 ] - Voltar\n");
+    for (int i = 0; i < n; i++) {
+        printf("[ %d ] - %s\n", i + 1, opcoes[i]);
+    }
+    printf("\n");
+    return n + 1;
+}
+
+int tela_inicial(bool admin) {
+    char * opcoes[1] = {"Reservar"};
+    int limit = tela_padrao("Menu", opcoes, 1);
+
+    if (admin) {
+        printf("[ 2 ] - Ver detalhes\n");
+        printf("[ 3 ] - Cadastrar usuário\n");
+        limit = 4;
+        printf("\n");
+    }
+    return limit;
 }
 
 bool confirmar() {
-    int n;
-    printf("[ 0 ] - Voltar\n[ 1 ] - Confirmar\n\n");
-    printf("Selecione uma opção: ");
-    scanf("%d", &n);
+    printf("\n[ 0 ] - Voltar\n");
+    printf("[ 1 ] - Confirmar\n");
+    printf("\n");
 
-    return n == 1;
+    return get_int(2) == 1;
 }

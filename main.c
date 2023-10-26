@@ -2,45 +2,87 @@
 #include "tipos.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-char opcoes[3][10] = {"Opcao 1", "Opcao 2", "Opcao 3"};
+int opcao;
 
-void limpar_buffer() {
-    char c;
-    while (c = getchar() != '\n' && c != EOF);
+void tela_selecionar_sala_reserva() {
+    limpar_tela();
+
+    Funcao opcoes_selecionar_sala[2] = {};
+    char * opcoes[2] = {
+        "Oládsakldjou owiq", 
+        "ola"
+    };
+    int limite = tela_padrao("Selecione uma sala", opcoes, 2);
+    opcao = get_int(limite);
+    if (opcao == 0)
+        return;
+    else
+        opcoes_selecionar_sala[opcao]();
 }
 
+void tela_ver_detalhes() {
+    limpar_tela();
+
+    int n = 0;
+    char * opcoes[2] = {};
+    int limite = tela_padrao("Detalhes", opcoes, n);
+    opcao = get_int(limite);
+    if (opcao == 0)
+        return;
+    else {
+        return;
+    }
+}
+
+void tela_cadastrar_usuario() {
+    limpar_tela();
+    while (1) {
+        limpar_buffer();
+
+        char * username = get_string("Username: ");
+        char * senha = get_string("Senha: ");
+        char * nome = get_string("Nome completo: ");
+
+        if (confirmar() && cadastrar_usuario(username, senha, nome))
+            return;
+    }
+}
+
+
 int main() {
-    char username[100], senha[100];
-    printf("Nome de usuario: ");
-    scanf("%s", username);
+    limpar_tela();
 
-    printf("Senha: ");
-    scanf("%s", senha);
+    char * username = get_string("Nome de usuario: ");
+    char * senha = get_string("Senha: ");
 
-    if (!login(username, senha))
-        return 0;
+    // Tipos
+    //  1 = Admin
+    //  0 = Usuario
+    // -1 = Erro
+    int user_type = login(username, senha);
 
-    /* Árvore de opções */
-    /*
-        [
-            voltar, 
-            [selecionar_sala, reservar_sala]
-        ]
-    */
+    // Erro
+    if (user_type == -1)
+        return -1;
 
-    /* CADASTRAR USUARIO */
-    /*
-    char username[100], senha[100], nome[100];
-    scanf("%s", username);
-    scanf("%s", senha);
+    while (true) {
+        Funcao opcoes_tela_inicial[4] = {
+            NULL, 
+            tela_selecionar_sala_reserva,
+            tela_ver_detalhes,
+            tela_cadastrar_usuario
+        };
 
-    limpar_buffer();
-    scanf("%[^\n]", nome);
+        opcao = get_int(tela_inicial(user_type));
+        if (opcao == 0)
+            return 0;
+        else {
+            opcoes_tela_inicial[opcao]();
+            limpar_tela();
+        }
 
-    if (cadastrar_usuario(username, senha, nome))
-        printf("CADASTRADO!\n");
-    else
-        printf("FALHA NO CADASTRO!\n");
-    */
+        
+    }
 }
