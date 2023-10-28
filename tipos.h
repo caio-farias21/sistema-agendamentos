@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-typedef void (*Funcao)();
+typedef char * string;

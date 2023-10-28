@@ -1,55 +1,47 @@
-#include "telas.h"
+#include "tipos.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
 
 // Função que verifica se há credenciais válidas no arquivo users.txt
-int login(char * username, char * senha) {
+int login(string username, string senha) {
     FILE * data = fopen("./database/users.txt", "r");
     if (data == NULL)
-        return false;
+        return -1;
 
-    char a[100], b[100], c[100], d[100];
-    while (fscanf(data, "%[^,],%[^,],%[^,],%[^\n]\n", a, b, c, d) != EOF) {
-        if (strcmp(a, username) == 0 && strcmp(b, senha) == 0) {
-            limpar_tela();
-            ola(d);
+    char data_username[100], data_senha[100], data_tipo_usuario[100];
+    while (fscanf(
+        data, 
+        "%[^,],%[^,],%[^,],%*[^\n]\n", 
+        data_username, 
+        data_senha, 
+        data_tipo_usuario
+    ) != EOF) {
+        if (strcmp(data_username, username) == 0 && strcmp(data_senha, senha) == 0) {
             fclose(data);
-            if (strcmp(c, "1") == 0)
+            if (strcmp(data_tipo_usuario, "1") == 0)
                 return 1;
-            else if (strcmp(c, "0") == 0)
+            else if (strcmp(data_tipo_usuario, "0") == 0)
                 return 0;
             else
                 return -1;
         }
     }
-    printf("CREDENCIAIS INVÁLIDAS!\n");
     fclose(data);
     return -1;
 }
 
-bool validate(char * str) {
-    return !(strstr(str, ",") || strstr(str, "\n"));
-}
-
-// Verifica se o username está em users.txt
-bool existe_usuario(char * username) {
+// Verifica se há um username em users.txt
+bool existe_usuario(string username) {
     FILE * data = fopen("./database/users.txt", "r");
     if (data == NULL)
-        return false; // Configurar erro
+        return false;
 
-    char a[100], b[100], c[100];
+    char data_username[404];
 
-    for (;fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF;) {
-        if (strcmp(a, username) == 0) {
-            fclose(data);
-            return true;
-        }
-    }
-
-    while (fscanf(data, "%[^,],%[^,],%[^\n]\n", a, b, c) != EOF) {
-        if (strcmp(a, username) == 0) {
+    while (fscanf(data, "%[^,]%*[^\n]\n", data_username) != EOF) {
+        if (strcmp(data_username, username) == 0) {
             fclose(data);
             return true;
         }
@@ -58,8 +50,35 @@ bool existe_usuario(char * username) {
     return false;
 }
 
+string procurar_nome(string username) {
+    FILE * data = fopen("./database/users.txt", "r");
+    if (data == NULL)
+        return NULL;
+
+    char data_username[100], data_nome[100];
+    string str = malloc(100);
+    if (str == NULL) {
+        return NULL;
+    }
+
+    while (fscanf(data, "%[^,],%*[^,],%*[^,],%[^\n]\n", data_username, data_nome) != EOF) {
+        if (strcmp(data_username, username) == 0) {
+            fclose(data);
+            strcpy(str, data_nome);
+            return str;
+        }
+    }
+    fclose(data);
+    return NULL;
+}
+
 // Insere credenciais no arquivo users.txt
-bool cadastrar_usuario(char * username, char * senha, char * nome){
+bool cadastrar_usuario(string username, string senha, string nome){
+    // Função que verifica se uma string contém caracteres sensiveis (virgula e quebra de linha)
+    bool validate(string str) {
+        return !(strstr(str, ",") || strstr(str, "\n"));
+    }
+
     FILE * data = fopen("./database/users.txt", "a");
 
     if (existe_usuario(username)) {
@@ -83,7 +102,7 @@ bool cadastrar_usuario(char * username, char * senha, char * nome){
 
 // Insere salas disponiveis no arquivo salas.txt
 // TODO: Finalizar função
-bool cadastrar_sala(char * nome){
+bool cadastrar_sala(string nome){
     FILE * data = fopen("./database/salas.txt", "a");
     FILE * idx = fopen("./database/configs/salas_idx.txt", "w+");
     int n;
