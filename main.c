@@ -13,7 +13,7 @@ int main() {
     while (1 == 1) {
         limpar_tela();
         printf("Menu\n\n");
-        printf("[ 0 ] - Voltar\n");
+        printf("[ 0 ] - Sair\n");
         printf("[ 1 ] - Reservar sala\n\n");
 
         opcao = get_opcao(2);
@@ -21,6 +21,7 @@ int main() {
             break;
         }
         if (opcao == 1) {
+            limpar_tela();
             printf("Selecione a sala\n\n");
             printf("[ 0 ] - Voltar\n");
             printf("[ 1 ] - Sala de computadores\n");
@@ -30,7 +31,9 @@ int main() {
             if (opcao == 0) {
                 continue;
             }
-            if (opcao == 2) {
+            else if (opcao == 1) {
+                printf("Você selecionou a sala de pcs!\n");
+                opcao = get_opcao(1);
             }
         }
     }

@@ -1,3 +1,4 @@
 caio_farias,1234,1,Caio Pereira Farias
 acsa_santos,1234,0,Acsa Mendes dos Santos
 emylli,1234,0,Emylli
+antonio_dias,1234,0,Antonio Dias
