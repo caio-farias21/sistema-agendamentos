@@ -32,3 +32,10 @@ Sala
 
 Selecione a sala:
 ------------------------------
+
+Menu
+
+[ 0 ] - Voltar
+[ 1 ] - Reservar sala
+
+Selecionar opção: 

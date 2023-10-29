@@ -32,24 +32,6 @@ int login(string username, string senha) {
     return -1;
 }
 
-// Verifica se há um username em users.txt
-bool existe_usuario(string username) {
-    FILE * data = fopen("./database/users.txt", "r");
-    if (data == NULL)
-        return false;
-
-    char data_username[404];
-
-    while (fscanf(data, "%[^,]%*[^\n]\n", data_username) != EOF) {
-        if (strcmp(data_username, username) == 0) {
-            fclose(data);
-            return true;
-        }
-    }
-    fclose(data);
-    return false;
-}
-
 string procurar_nome(string username) {
     FILE * data = fopen("./database/users.txt", "r");
     if (data == NULL)
@@ -58,6 +40,7 @@ string procurar_nome(string username) {
     char data_username[100], data_nome[100];
     string str = malloc(100);
     if (str == NULL) {
+        fclose(data);
         return NULL;
     }
 
@@ -81,7 +64,7 @@ bool cadastrar_usuario(string username, string senha, string nome){
 
     FILE * data = fopen("./database/users.txt", "a");
 
-    if (existe_usuario(username)) {
+    if (procurar_nome(username) != NULL) {
         fclose(data);
         printf("NOME DE USUÁRIO EM USO!\n");
         return false;
