@@ -4,8 +4,8 @@ Partes:
     Usuario:
         Tela de login                      |
         Tela de menu inicial               |
-        Tela de reservar sala              |
-        Tela de horários de sala           |
+        Tela de reservar sala              | Emylli
+        Tela de horários de sala           | Emylli
 
     Somente admin:
         Tela de cadastro de usuário        | Antônio
