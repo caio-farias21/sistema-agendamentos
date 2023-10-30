@@ -2,8 +2,8 @@
 
 Partes:
     Usuario:
-        Tela de login                      |
-        Tela de menu inicial               |
+        Tela de login                      | Gustavo
+        Tela de menu inicial               | Gustavo
         Tela de reservar sala              | Emylli
         Tela de horários de sala           | Emylli
 
