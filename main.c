@@ -9,6 +9,19 @@ int opcao;
 int main() {
     // Implementar as coisas!
 
+    // Login
+    limpar_tela();
+
+    printf("Login\n\n");
+    string username = get_string("Digite seu username: ");
+    string senha = get_string("Digite sua senha: ");
+
+    int tipo_do_usuario = login(username, senha);
+    if (tipo_do_usuario == -1) {
+        printf("Credenciais inválidas!\n");
+        return 0;
+    }
+
     // O que foi feito na reunião
     while (1 == 1) {
         limpar_tela();
