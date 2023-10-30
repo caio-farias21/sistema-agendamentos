@@ -53,15 +53,7 @@ int main() {
                 printf("[ %d ] - %s\n", i, procurar_sala(i));
             }
             printf("\n");
-
-        if (opcao == 2) {
-            imprimir_detalhes_reserva(username);
-            printf("Você selecionou a Sala de computadores\n");
-            printf("Você selecionou a sala 2\n");
-            printf("[ 0 ] - Voltar\n");
-            limpar_tela();
-        }
-
+        
             opcao = get_opcao(numero_de_salas() + 1);
             
             if (opcao == 0) {
@@ -75,5 +67,13 @@ int main() {
 
             }
         }
-    }
+        if (opcao == 2) {
+            imprimir_detalhes_reserva(username);
+            printf("Você selecionou a Sala de computadores\n");
+            printf("Você selecionou a sala 2\n");
+            printf("[ 0 ] - Voltar\n");
+            limpar_tela();
+        }
+
+    }   
 }
