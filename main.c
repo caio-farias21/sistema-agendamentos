@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-int opcao;
+int opcao, limite;
 int main() {
     // Implementar as coisas!
 
@@ -27,13 +27,23 @@ int main() {
         limpar_tela();
         printf("Menu\n\n");
         printf("[ 0 ] - Sair\n");
-        printf("[ 1 ] - Reservar sala\n\n");
+        printf("[ 1 ] - Reservar sala\n");
+        limite = 2;
 
-        opcao = get_opcao(2);
+        // Se administrador
+        if (tipo_do_usuario == 1) {
+            printf("[ 2 ] - Cadastrar sala\n");
+            printf("[ 3 ] - Cadastrar aluno\n");
+            limite = 4;
+        }
+        
+        printf("\n");
+        opcao = get_opcao(limite);
+
         if (opcao == 0) {
             break;
         }
-        if (opcao == 1) {
+        else if (opcao == 1) {
             limpar_tela();
             printf("Selecione a sala\n\n");
             printf("[ 0 ] - Voltar\n");

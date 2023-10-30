@@ -171,6 +171,7 @@ string horarios(int idx) {
         case 12:
             return "17:41 - 18:30";
         default:
+            printf("Horário inválido! Revise o código\n");
             return "00:00";
     }
 }
