@@ -1,6 +1,10 @@
-# schedule-manager
+# sistema_gerenciamentos
 
-Partes:
+O Sistema de Agendamentos foi criado com o propósito de tornar a reserva de salas mais eficiente e organizada. Este projeto visa oferecer uma solução prática para otimizar o agendamento de espaços, promovendo uma melhor utilização dos recursos disponíveis e simplificando o processo de reserva.
+
+
+```
+Tarefas:
     Usuario:
         Tela de login                      | Gustavo
         Tela de menu inicial               | Gustavo
@@ -12,7 +16,7 @@ Partes:
         Tela de cadastro de sala           | Antônio
         Tela de detalhes dos agendamentos  | Acsa
     
-    Testes: Acsa e Antônio
-
--> Voltar sempre no 0
--> Sair apenas no menu inicial (0 também)
+    Testes: Gustavo
+    Estilização: Acsa
+    Funções auxiliares: Caio
+```
