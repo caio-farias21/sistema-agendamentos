@@ -169,6 +169,7 @@ int main(int argc, string args[]) {
                 printf(TEXTO_PRIMARIO"\n[ 0 ] - Cancelar\n");
                 printf("[ 1 ] - Refazer\n");
                 printf("[ 2 ] - Confirmar\n\n"NORMAL);
+                printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
                 opcao = get_opcao(3);
                 if (opcao == 0) {
