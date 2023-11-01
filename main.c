@@ -52,7 +52,7 @@ int main(int argc, string args[]) {
         limpar_tela();
 
         // Menu inicial
-        printf(TEXTO_PRIMARIO"\n━ Menu ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        printf(TEXTO_PRIMARIO"\n━ Menu ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         printf("[ 0 ] - Sair\n");
         printf("[ 1 ] - Reservar sala\n");
         printf("[ 2 ] - Ver minhas reservas\n");
@@ -60,7 +60,7 @@ int main(int argc, string args[]) {
 
         // Se administrador
         if (tipo_do_usuario == 1) {
-            printf(TEXTO_PRIMARIO"\n━ Funções de Administrador ━━━━━━━━━\n\n");
+            printf(TEXTO_PRIMARIO"\n━ Funções de Administrador ━━━━━━━━━━\n\n");
             printf("[ 3 ] - Cadastrar sala\n");
             printf("[ 4 ] - Cadastrar aluno\n");
             printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
@@ -84,7 +84,7 @@ int main(int argc, string args[]) {
             quantidade_de_salas = numero_de_salas();
 
             // Menu de salas
-            printf(TEXTO_PRIMARIO"\n━ Selecione a sala ━━━━━━━━━━━━\n\n");
+            printf(TEXTO_PRIMARIO"\n━ Selecione a sala ━━━━━━━━━━━━━━━━━━\n\n");
             printf("[ 0 ] - Voltar\n");
             
             for (int i = 1; i <= quantidade_de_salas; i++) {
@@ -143,11 +143,11 @@ int main(int argc, string args[]) {
 
             limpar_tela();
 
-            printf(TEXTO_PRIMARIO"\n━ Suas reservas ━━━━━━━━━━━━━━━━━━━\n\n");
+            printf(TEXTO_PRIMARIO"\n━ Suas reservas ━━━━━━━━━━━━━━━━━━━━━\n\n");
             imprimir_detalhes_reserva(username);
             printf("\n");
-            printf(TEXTO_PRIMARIO"[ 0 ] - Voltar");
-            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"NORMAL);
+            printf(TEXTO_PRIMARIO"[ 0 ] - Voltar\n");
+            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"NORMAL);
 
             get_opcao(1);
 
@@ -183,6 +183,7 @@ int main(int argc, string args[]) {
                 else {
 
                     limpar_tela();
+                    printf("\n");
                     if (cadastrar_sala(nome_sala))
                         printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
                     else
@@ -244,6 +245,7 @@ int main(int argc, string args[]) {
                 }
                 else {
                     limpar_tela();
+                    printf("\n");
                     if (cadastrar_usuario(cadastro_username, cadastro_senha, cadastro_nome))
                         printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
                     else
