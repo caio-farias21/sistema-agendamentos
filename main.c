@@ -19,7 +19,7 @@ int main(int argc, string args[]) {
     if (argc == 1) {
         limpar_tela();
 
-        printf(TEXTO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        printf(TEXTO_PRIMARIO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         username = get_string("Digite seu username:  "NORMAL);
         if (username == NULL)
             goto garbage;
@@ -178,12 +178,12 @@ int main(int argc, string args[]) {
                 }
                 else {
                     if (cadastrar_sala(nome_sala))
-                        printf("Cadastro feito com sucesso!\n\n"NORMAL);
+                        printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
                     else
                         printf(VERMELHO"Cadastro falhou!\n\n"NORMAL);
 
                     free(nome_sala);
-                    printf("[ 0 ] - Continuar\n\n");
+                    printf(TEXTO_PRIMARIO"[ 0 ] - Continuar\n\n"NORMAL);
                     get_opcao(1);
                     break;
                 }
@@ -195,7 +195,7 @@ int main(int argc, string args[]) {
         else if (opcao == 4) {
             while (1) {
                 limpar_tela();
-                printf("\nCadastrar aluno\n\n");
+                printf(TEXTO_PRIMARIO"\nCadastrar aluno\n\n");
                 string cadastro_username = get_string(TEXTO_PRIMARIO"Digite o username: \e[0m");
                 if (cadastro_username == NULL) {
                     free(cadastro_username);
