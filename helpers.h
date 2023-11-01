@@ -8,7 +8,6 @@ int get_opcao(int limite) {
     while (1) {
         printf("Selecione uma opção: ");
         scanf("%d%*c", &n);
-        char c;
         if (n >= 0 && n < limite)
             return n;
     }
@@ -22,18 +21,14 @@ string get_string(string mensagem) {
         return NULL;
     }
     long unsigned int tamanho = 0;
-    long unsigned int capacidade = 16;
 
     do {
         printf("%s", mensagem);
         while ((c = fgetc(stdin)) != '\n' && c != EOF) {
-            if (tamanho == capacidade - 1) {
-                capacidade *= 2;
-                str = (char*) realloc(str, capacidade);
-                if (str == NULL) {
-                    free(str);
-                    return NULL;
-                }
+            str = (char*) realloc(str, tamanho + 1);
+            if (str == NULL) {
+                free(str);
+                return NULL;
             }
             str[tamanho++] = c;
         }

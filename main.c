@@ -107,6 +107,8 @@ int main(int argc, string args[]) {
  
                 printf("[ 00 ]   Voltar\n");
                 for (int i = 1; i <= 12; i++) {
+                    if (esta_reservado(cod_sala, i))
+                        continue;
                     printf("[ %02d ]   %s\n", i, horarios(i));
                 }
                 printf(TEXTO_PRIMARIO"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
@@ -120,6 +122,9 @@ int main(int argc, string args[]) {
                 else {
                     cod_horario = opcao;
 
+                    limpar_tela();
+                    printf("\n");
+                    
                     if (reservar_sala(cod_sala, username, cod_horario))
                         printf(VERDE"Reserva feita com sucesso!\n\n"NORMAL);
                     else
@@ -177,6 +182,8 @@ int main(int argc, string args[]) {
                     continue;
                 }
                 else {
+
+                    limpar_tela();
                     if (cadastrar_sala(nome_sala))
                         printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
                     else
@@ -236,6 +243,7 @@ int main(int argc, string args[]) {
                     continue;
                 }
                 else {
+                    limpar_tela();
                     if (cadastrar_usuario(cadastro_username, cadastro_senha, cadastro_nome))
                         printf("Cadastro feito com sucesso!\n\n");
                     else

@@ -247,7 +247,7 @@ bool reservar_sala(int cod_sala, string username, int cod_horario) {
         data_cod_sala_int = atoi(data_cod_sala);
 
         if (strcmp(data_username, username) == 0) {
-            printf("Você já possui reservas! Volte amanhã para realizar outra.\n");
+            printf("Você já possui reservas!\n");
             
             fclose(data_r);
             return false;
@@ -297,4 +297,25 @@ void imprimir_detalhes_reserva(string username) {
     }
     printf("Você ainda não reservou uma sala!\n");
     fclose(data_r);
+}
+
+bool esta_reservado(int cod_sala, int cod_horario) {
+    FILE * data_r = fopen("./database/reservas.csv", "r");
+    if (data_r == NULL) {
+        fclose(data_r);
+        return false;
+    }
+
+    char data_cod_sala[100], data_cod_horario[100];
+    int data_cod_sala_int, data_cod_horario_int;
+    while (fscanf(data_r, "%[^,],%*[^,],%[^\n]\n", data_cod_sala, data_cod_horario) != EOF) {
+        data_cod_sala_int = atoi(data_cod_sala);
+        data_cod_horario_int = atoi(data_cod_horario);
+        if (data_cod_sala_int == cod_sala && data_cod_horario_int == cod_horario) {
+            fclose(data_r);
+            return true;
+        }
+    }
+    fclose(data_r);
+    return false;
 }
