@@ -5,6 +5,10 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#define TEXTO_PRIMARIO "\e[1;34m"
+#define NORMAL "\e[0m"
+#define VERMELHO "\e[1;91m"
+#define VERDE "\e[1;92m"
 
 int opcao, limite, cod_sala, cod_horario, quantidade_de_salas;
 int main(int argc, string args[]) {
@@ -15,14 +19,16 @@ int main(int argc, string args[]) {
     if (argc == 1) {
         limpar_tela();
 
-        printf("\nLogin\n\n");
-        username = get_string("Digite seu username: ");
+        printf(TEXTO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        username = get_string("Digite seu username:  "NORMAL);
         if (username == NULL)
             goto garbage;
 
-        senha = get_string("Digite sua senha: ");
+        senha = get_string("\e[1;34mDigite sua senha: "NORMAL);
         if (senha == NULL)
             goto garbage;
+
+        printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     }
 
     else if (argc == 2 || argc > 3) {
@@ -36,7 +42,7 @@ int main(int argc, string args[]) {
 
     int tipo_do_usuario = login(username, senha);
     if (tipo_do_usuario == -1) {
-        printf("Credenciais inválidas!\n");
+        printf(VERMELHO"!!!Credenciais inválidas!!!\n");
         goto garbage;
     }
 
@@ -46,7 +52,7 @@ int main(int argc, string args[]) {
         limpar_tela();
 
         // Menu inicial
-        printf("\nMenu\n\n");
+        printf(TEXTO_PRIMARIO"\n━ Menu ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         printf("[ 0 ] - Sair\n");
         printf("[ 1 ] - Reservar sala\n");
         printf("[ 2 ] - Ver minhas reservas\n");
@@ -54,10 +60,13 @@ int main(int argc, string args[]) {
 
         // Se administrador
         if (tipo_do_usuario == 1) {
-            printf("\nFunções de administração:\n\n");
-            printf("    [ 3 ] - Cadastrar sala\n");
-            printf("    [ 4 ] - Cadastrar aluno\n");
+            printf(TEXTO_PRIMARIO"\n━ Funções de Administrador ━━━━━━━━━\n\n");
+            printf("[ 3 ] - Cadastrar sala\n");
+            printf("[ 4 ] - Cadastrar aluno\n");
+            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
             limite = 5;
+        } else {
+            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");   
         }
         
         printf("\n");
@@ -76,12 +85,13 @@ int main(int argc, string args[]) {
 
             // Menu de salas
             printf("\nSelecione a sala\n\n");
+            printf(TEXTO_PRIMARIO"\n━ Selecione a sala ━━━━━━━━━━━━\n\n");
             printf("[ 0 ] - Voltar\n");
             
             for (int i = 1; i <= quantidade_de_salas; i++) {
                 printf("[ %d ] - %s\n", i, procurar_sala(i));
             }
-            printf("\n");
+            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
 
             opcao = get_opcao(quantidade_de_salas + 1);
             
@@ -93,14 +103,14 @@ int main(int argc, string args[]) {
 
                 limpar_tela();
 
-                printf("\nHorários\n\n");
-
+                printf(TEXTO_PRIMARIO"\n━ Horários ━━━━━━━━━━━━━━━━━━━━━━━━\n");
+ 
                 printf("[ 00 ]   Voltar\n");
                 for (int i = 1; i <= 12; i++) {
                     printf("[ %02d ]   %s\n", i, horarios(i));
                 }
+                printf(TEXTO_PRIMARIO"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
 
-                printf("\n");
                 opcao = get_opcao(13);
 
                 if (opcao == 0) {
@@ -111,11 +121,12 @@ int main(int argc, string args[]) {
                     cod_horario = opcao;
 
                     if (reservar_sala(cod_sala, username, cod_horario))
-                        printf("Reserva feita com sucesso!\n\n");
+                        printf(VERDE"Reserva feita com sucesso!\n\n"NORMAL);
                     else
-                        printf("Reserva falhou!\n\n");
-
-                    printf("[ 0 ] - Continuar\n\n");
+                        printf(VERMELHO"Reserva falhou!\n\n"NORMAL);
+                    
+                    printf(TEXTO_PRIMARIO"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+                    printf("[ 0 ] - Continuar\n\n"NORMAL);
                     get_opcao(1);
                     continue;
                 }
@@ -127,12 +138,14 @@ int main(int argc, string args[]) {
 
             limpar_tela();
 
-            printf("\nSuas reservas\n\n");
+            printf(TEXTO_PRIMARIO"\n━ Suas reservas ━━━━━━━━━━━━━━━━━━━\n\n");
             imprimir_detalhes_reserva(username);
             printf("\n");
-            printf("[ 0 ] - Continuar\n\n");
+            printf(TEXTO_PRIMARIO"[ 0 ] - Continuar");
+            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"NORMAL);
 
             get_opcao(1);
+
             continue;
         }
 
@@ -141,16 +154,17 @@ int main(int argc, string args[]) {
             while(1) {
                 limpar_tela();
 
-                printf("\nCadastrar sala\n\n");
-                string nome_sala = get_string("Digite o nome da sala: ");
+                printf("\n\n\n");
+                printf(TEXTO_PRIMARIO"\n━ Cadastrar sala ━━━━━━━━━━━━━━━━━━\n\n");
+                string nome_sala = get_string("Digite o nome da sala: "NORMAL);
                 if (nome_sala == NULL) {
                     free(nome_sala);
                     goto garbage;
                 }
 
-                printf("\n[ 0 ] - Voltar\n");
+                printf(VERMELHO"\n[ 0 ] - Cancelar\n");
                 printf("[ 1 ] - Refazer\n");
-                printf("[ 2 ] - Confirmar\n\n");
+                printf("[ 2 ] - Confirmar\n\n"NORMAL);
 
                 opcao = get_opcao(3);
                 if (opcao == 0) {
@@ -164,9 +178,9 @@ int main(int argc, string args[]) {
                 }
                 else {
                     if (cadastrar_sala(nome_sala))
-                        printf("Cadastro feito com sucesso!\n\n");
+                        printf("Cadastro feito com sucesso!\n\n"NORMAL);
                     else
-                        printf("Cadastro falhou!\n\n");
+                        printf(VERMELHO"Cadastro falhou!\n\n"NORMAL);
 
                     free(nome_sala);
                     printf("[ 0 ] - Continuar\n\n");
@@ -182,7 +196,7 @@ int main(int argc, string args[]) {
             while (1) {
                 limpar_tela();
                 printf("\nCadastrar aluno\n\n");
-                string cadastro_username = get_string("Digite o username: ");
+                string cadastro_username = get_string(TEXTO_PRIMARIO"Digite o username: \e[0m");
                 if (cadastro_username == NULL) {
                     free(cadastro_username);
                     goto garbage;
@@ -203,7 +217,7 @@ int main(int argc, string args[]) {
                     goto garbage;
                 }
 
-                printf("\n[ 0 ] - Voltar\n");
+                printf("\n[ 0 ] - Cancelar\n");
                 printf("[ 1 ] - Refazer\n");
                 printf("[ 2 ] - Confirmar\n\n");
 

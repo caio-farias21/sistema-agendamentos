@@ -290,7 +290,7 @@ void imprimir_detalhes_reserva(string username) {
             int data_cod_sala_int = atoi(data_cod_sala);
             int data_cod_horario_int = atoi(data_cod_horario);
 
-            printf("Olá %s,\nVocê possui reserva em '%s' de %s\n", procurar_nome(username), procurar_sala(data_cod_sala_int), horarios(data_cod_horario_int));
+            printf("\e[0;34m%s,\n\nDetalhes da reserva\e[0m\n\e[0;37mSala: %s\nHorário: %s\n\e[0m", procurar_nome(username), procurar_sala(data_cod_sala_int), horarios(data_cod_horario_int));
             fclose(data_r);
             return;
         }
