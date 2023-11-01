@@ -12,14 +12,14 @@
 
 int opcao, limite, cod_sala, cod_horario, quantidade_de_salas;
 int main(int argc, string args[]) {
-
     string username = NULL;
     string senha = NULL;
 
     if (argc == 1) {
         limpar_tela();
+        left_to_right();
 
-        printf(TEXTO_PRIMARIO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        printf(TEXTO_PRIMARIO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         username = get_string("Digite seu username:  "NORMAL);
         if (username == NULL)
             goto garbage;

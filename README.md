@@ -2,9 +2,25 @@
 
 O Sistema de Agendamentos foi criado com o propósito de tornar a reserva de salas mais eficiente e organizada. Este projeto visa oferecer uma solução prática para otimizar o agendamento de espaços, promovendo uma melhor utilização dos recursos disponíveis e simplificando o processo de reserva.
 
-
+## Credenciais de teste
 ```
-Tarefas:
+Usuário: hebert
+Senha: 1234
+```
+
+
+## Executar
+``` bash
+./main
+```
+Ou para login rápido
+``` bash
+./main <username> <senha>
+```
+
+
+## Tarefas
+```
     Usuario:
         Tela de login                      | Gustavo
         Tela de menu inicial               | Gustavo
@@ -20,3 +36,4 @@ Tarefas:
     Estilização: Acsa
     Funções auxiliares: Caio
 ```
+
