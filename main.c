@@ -163,7 +163,6 @@ int main(int argc, string args[]) {
                 printf(AZUL"\n━ Cadastrar sala ━━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
                 string nome_sala = get_string(AZUL"Digite o nome da sala: "FIM_COR);
                 if (nome_sala == NULL) {
-                    free(nome_sala);
                     goto garbage;
                 }
 
@@ -207,20 +206,17 @@ int main(int argc, string args[]) {
                 printf(AZUL"\n━ Cadastrar aluno ━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
                 string cadastro_username = get_string(AZUL"Digite o username: "FIM_COR);
                 if (cadastro_username == NULL) {
-                    free(cadastro_username);
                     goto garbage;
                 }
 
                 string cadastro_senha = get_string(AZUL"Digite a senha: "FIM_COR);
                 if (cadastro_senha == NULL) {
-                    free(cadastro_senha);
                     free(cadastro_username);
                     goto garbage;
                 }
 
                 string cadastro_nome = get_string(AZUL"Digite o nome completo: "FIM_COR);
                 if (cadastro_nome == NULL) {
-                    free(cadastro_nome);
                     free(cadastro_senha);
                     free(cadastro_username);
                     goto garbage;

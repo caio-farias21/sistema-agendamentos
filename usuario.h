@@ -7,10 +7,8 @@
 // Função que verifica se há credenciais válidas no arquivo users.txt
 int login(string username, string senha) {
     FILE * data = fopen("./database/users.csv", "r");
-    if (data == NULL) {
-        fclose(data);
+    if (data == NULL)
         return -1;
-    }
 
     char data_username[100], data_senha[100], data_tipo_usuario[100];
     while (fscanf(data, "%[^,],%[^,],%[^,],%*[^\n]\n", data_username, data_senha, data_tipo_usuario) != EOF) {
@@ -30,17 +28,13 @@ int login(string username, string senha) {
 
 string procurar_nome(string username) {
     FILE * data = fopen("./database/users.csv", "r");
-    if (data == NULL) {
-        fclose(data);
+    if (data == NULL)
         return NULL;
-    }
 
     char data_username[100], data_nome[100];
     string str = malloc(100);
-    if (str == NULL) {
-        fclose(data);
+    if (str == NULL)
         return NULL;
-    }
 
     while (fscanf(data, "%[^,],%*[^,],%*[^,],%[^\n]\n", data_username, data_nome) != EOF) {
         if (strcmp(data_username, username) == 0) {
@@ -67,9 +61,9 @@ bool cadastrar_usuario(string username, string senha, string nome){
         return false;
     }
 
-
+    string nome = procurar_nome(username);
     if (procurar_nome(username) != NULL) {
-        fclose(data);
+        free(nome);
         printf("NOME DE USUÁRIO EM USO!\n");
         return false;
     }
@@ -91,13 +85,12 @@ bool cadastrar_usuario(string username, string senha, string nome){
 bool cadastrar_sala(string nome){
     FILE * data = fopen("./database/salas.csv", "a");
     if (data == NULL) {
-        fclose(data);
         return false;
     }
 
     FILE * idx_in = fopen("./database/configs/salas_idx.txt", "r");
     if (idx_in == NULL) {
-        fclose(idx_in);
+        fclose(data);
         return false;
     }
 
@@ -125,10 +118,8 @@ bool cadastrar_sala(string nome){
 
 int numero_de_salas() {
     FILE * idx_in = fopen("./database/configs/salas_idx.txt", "r");
-    if (idx_in == NULL) {
-        fclose(idx_in);
+    if (idx_in == NULL)
         return 0;
-    }
 
 
     int n;
@@ -151,10 +142,8 @@ string procurar_sala(int idx) {
     }
 
     FILE * data = fopen("./database/salas.csv", "r");
-    if (data == NULL) {
-        fclose(data);
+    if (data == NULL)
         return NULL;
-    }
 
     char data_idx[100], data_nome[100];
     string str = malloc(100);
@@ -234,10 +223,8 @@ bool reservar_sala(int cod_sala, string username, int cod_horario) {
     }
 
     FILE * data_r = fopen("./database/reservas.csv", "r");
-    if (data_r == NULL) {
-        fclose(data_r);
+    if (data_r == NULL)
         return false;
-    }
 
     char data_cod_sala[100], data_username[100], data_cod_horario[100];
     int data_cod_sala_int, data_cod_horario_int;
@@ -264,11 +251,8 @@ bool reservar_sala(int cod_sala, string username, int cod_horario) {
     fclose(data_r);
 
     FILE * data_in = fopen("./database/reservas.csv", "a");
-    if (data_in == NULL) {
-        fclose(data_in);
+    if (data_in == NULL)
         return false;
-    }
-
 
     char template[300];
     sprintf(template, "%d,%s,%d\n", cod_sala, username, cod_horario);
@@ -279,10 +263,8 @@ bool reservar_sala(int cod_sala, string username, int cod_horario) {
 
 void imprimir_detalhes_reserva(string username) {
     FILE * data_r = fopen("./database/reservas.csv", "r");
-    if (data_r == NULL) {
-        fclose(data_r);
+    if (data_r == NULL)
         return;
-    }
 
     char data_cod_sala[100], data_username[100], data_cod_horario[100];
     while (fscanf(data_r, "%[^,],%[^,],%[^\n]\n", data_cod_sala, data_username, data_cod_horario) != EOF) {
@@ -301,10 +283,8 @@ void imprimir_detalhes_reserva(string username) {
 
 bool esta_reservado(int cod_sala, int cod_horario) {
     FILE * data_r = fopen("./database/reservas.csv", "r");
-    if (data_r == NULL) {
-        fclose(data_r);
+    if (data_r == NULL)
         return false;
-    }
 
     char data_cod_sala[100], data_cod_horario[100];
     int data_cod_sala_int, data_cod_horario_int;
