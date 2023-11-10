@@ -5,8 +5,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#define TEXTO_PRIMARIO "\e[1;34m"
-#define NORMAL "\e[0m"
+
+#define AZUL "\e[1;34m"
+#define FIM_COR "\e[0m"
 #define VERMELHO "\e[1;91m"
 #define VERDE "\e[1;92m"
 
@@ -19,16 +20,16 @@ int main(int argc, string args[]) {
         limpar_tela();
         left_to_right();
 
-        printf(TEXTO_PRIMARIO"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
-        username = get_string("Digite seu username:  "NORMAL);
+        printf(AZUL"\n━ Login ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
+        username = get_string(AZUL"Digite seu username:  "FIM_COR);
         if (username == NULL)
             goto garbage;
 
-        senha = get_string("\e[1;34mDigite sua senha: "NORMAL);
+        senha = get_string(AZUL"Digite sua senha: "FIM_COR);
         if (senha == NULL)
             goto garbage;
 
-        printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        printf(AZUL"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
     }
 
     else if (argc == 2 || argc > 3) {
@@ -42,17 +43,17 @@ int main(int argc, string args[]) {
 
     int tipo_do_usuario = login(username, senha);
     if (tipo_do_usuario == -1) {
-        printf(VERMELHO"--------Credenciais inválidas--------\n");
+        printf(VERMELHO"\n--------Credenciais inválidas--------\n\n"FIM_COR);
         goto garbage;
     }
 
     // Loop infinito
-    while (1 == 1) {
+    while (1) {
 
         limpar_tela();
 
         // Menu inicial
-        printf(TEXTO_PRIMARIO"\n━ Menu ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        printf(AZUL"\n━ Menu ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         printf("[ 0 ] - Sair\n");
         printf("[ 1 ] - Reservar sala\n");
         printf("[ 2 ] - Ver minhas reservas\n");
@@ -60,13 +61,13 @@ int main(int argc, string args[]) {
 
         // Se administrador
         if (tipo_do_usuario == 1) {
-            printf(TEXTO_PRIMARIO"\n━ Funções de Administrador ━━━━━━━━━━\n\n");
+            printf("\n━ Funções de Administrador ━━━━━━━━━━\n\n");
             printf("[ 3 ] - Cadastrar sala\n");
             printf("[ 4 ] - Cadastrar aluno\n");
-            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
+            printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
             limite = 5;
         } else {
-            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");   
+            printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);   
         }
         
         printf("\n");
@@ -84,13 +85,13 @@ int main(int argc, string args[]) {
             quantidade_de_salas = numero_de_salas();
 
             // Menu de salas
-            printf(TEXTO_PRIMARIO"\n━ Selecione a sala ━━━━━━━━━━━━━━━━━━\n\n");
+            printf(AZUL"\n━ Selecione a sala ━━━━━━━━━━━━━━━━━━\n\n");
             printf("[ 0 ] - Voltar\n");
             
             for (int i = 1; i <= quantidade_de_salas; i++) {
                 printf("[ %d ] - %s\n", i, procurar_sala(i));
             }
-            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
+            printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
 
             opcao = get_opcao(quantidade_de_salas + 1);
             
@@ -102,7 +103,7 @@ int main(int argc, string args[]) {
 
                 limpar_tela();
 
-                printf(TEXTO_PRIMARIO"\n━ Horários ━━━━━━━━━━━━━━━━━━━━━━━━\n");
+                printf(AZUL"\n━ Horários ━━━━━━━━━━━━━━━━━━━━━━━━\n");
  
                 printf("[ 00 ]   Voltar\n");
                 for (int i = 1; i <= 12; i++) {
@@ -110,7 +111,7 @@ int main(int argc, string args[]) {
                         continue;
                     printf("[ %02d ]   %s\n", i, horarios(i));
                 }
-                printf(TEXTO_PRIMARIO"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m\n");
+                printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
 
                 opcao = get_opcao(13);
 
@@ -126,12 +127,12 @@ int main(int argc, string args[]) {
                     printf("\n");
                     
                     if (reservar_sala(cod_sala, username, cod_horario))
-                        printf(VERDE"Reserva feita com sucesso!\n\n"NORMAL);
+                        printf(VERDE"Reserva feita com sucesso!\n\n"FIM_COR);
                     else
-                        printf(VERMELHO"Reserva falhou!\n"NORMAL);
+                        printf(VERMELHO"Reserva falhou!\n\n"FIM_COR);
                     
-                    printf(TEXTO_PRIMARIO"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-                    printf("[ 0 ] - Voltar\n\n"NORMAL);
+                    printf(AZUL"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+                    printf("[ 0 ] - Voltar\n\n"FIM_COR);
                     get_opcao(1);
                     continue;
                 }
@@ -143,11 +144,11 @@ int main(int argc, string args[]) {
 
             limpar_tela();
 
-            printf(TEXTO_PRIMARIO"\n━ Suas reservas ━━━━━━━━━━━━━━━━━━━━━\n\n");
+            printf(AZUL"\n━ Suas reservas ━━━━━━━━━━━━━━━━━━━━━\n\n");
             imprimir_detalhes_reserva(username);
             printf("\n");
-            printf(TEXTO_PRIMARIO"[ 0 ] - Voltar\n");
-            printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"NORMAL);
+            printf("[ 0 ] - Voltar\n");
+            printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
 
             get_opcao(1);
 
@@ -159,17 +160,17 @@ int main(int argc, string args[]) {
             while(1) {
                 limpar_tela();
 
-                printf(TEXTO_PRIMARIO"\n━ Cadastrar sala ━━━━━━━━━━━━━━━━━━\n\n");
-                string nome_sala = get_string("Digite o nome da sala: "NORMAL);
+                printf(AZUL"\n━ Cadastrar sala ━━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
+                string nome_sala = get_string(AZUL"Digite o nome da sala: "FIM_COR);
                 if (nome_sala == NULL) {
                     free(nome_sala);
                     goto garbage;
                 }
 
-                printf(TEXTO_PRIMARIO"\n[ 0 ] - Cancelar\n");
+                printf(AZUL"\n[ 0 ] - Cancelar\n");
                 printf("[ 1 ] - Refazer\n");
-                printf("[ 2 ] - Confirmar\n\n"NORMAL);
-                printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+                printf("[ 2 ] - Confirmar\n\n");
+                printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
 
                 opcao = get_opcao(3);
                 if (opcao == 0) {
@@ -186,12 +187,12 @@ int main(int argc, string args[]) {
                     limpar_tela();
                     printf("\n");
                     if (cadastrar_sala(nome_sala))
-                        printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
+                        printf(VERDE"Cadastro feito com sucesso!\n\n"FIM_COR);
                     else
-                        printf(VERMELHO"Cadastro falhou!\n\n"NORMAL);
+                        printf(VERMELHO"Cadastro falhou!\n\n"FIM_COR);
 
                     free(nome_sala);
-                    printf(TEXTO_PRIMARIO"[ 0 ] - Continuar\n\n"NORMAL);
+                    printf(AZUL"[ 0 ] - Continuar\n\n"FIM_COR);
                     get_opcao(1);
                     break;
                 }
@@ -203,21 +204,21 @@ int main(int argc, string args[]) {
         else if (opcao == 4) {
             while (1) {
                 limpar_tela();
-                printf(TEXTO_PRIMARIO"\n━ Cadastrar aluno ━━━━━━━━━━━━━━━━━\n\n");
-                string cadastro_username = get_string(TEXTO_PRIMARIO"Digite o username: \e[0m");
+                printf(AZUL"\n━ Cadastrar aluno ━━━━━━━━━━━━━━━━━\n\n"FIM_COR);
+                string cadastro_username = get_string(AZUL"Digite o username: "FIM_COR);
                 if (cadastro_username == NULL) {
                     free(cadastro_username);
                     goto garbage;
                 }
 
-                string cadastro_senha = get_string(TEXTO_PRIMARIO"Digite a senha: "NORMAL);
+                string cadastro_senha = get_string(AZUL"Digite a senha: "FIM_COR);
                 if (cadastro_senha == NULL) {
                     free(cadastro_senha);
                     free(cadastro_username);
                     goto garbage;
                 }
 
-                string cadastro_nome = get_string(TEXTO_PRIMARIO"Digite o nome completo: "NORMAL);
+                string cadastro_nome = get_string(AZUL"Digite o nome completo: "FIM_COR);
                 if (cadastro_nome == NULL) {
                     free(cadastro_nome);
                     free(cadastro_senha);
@@ -225,10 +226,10 @@ int main(int argc, string args[]) {
                     goto garbage;
                 }
 
-                printf(TEXTO_PRIMARIO"\n[ 0 ] - Cancelar\n");
+                printf(AZUL"\n[ 0 ] - Cancelar\n");
                 printf("[ 1 ] - Refazer\n");
-                printf("[ 2 ] - Confirmar"NORMAL);
-                printf(TEXTO_PRIMARIO"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"NORMAL);
+                printf("[ 2 ] - Confirmar\n\n");
+                printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"FIM_COR);
 
                 opcao = get_opcao(3);
                 if (opcao == 0) {
@@ -248,14 +249,14 @@ int main(int argc, string args[]) {
                     limpar_tela();
                     printf("\n");
                     if (cadastrar_usuario(cadastro_username, cadastro_senha, cadastro_nome))
-                        printf(VERDE"Cadastro feito com sucesso!\n\n"NORMAL);
+                        printf(VERDE"Cadastro feito com sucesso!\n\n"FIM_COR);
                     else
-                        printf(VERMELHO"Cadastro falhou!\n\n"NORMAL);
+                        printf(VERMELHO"Cadastro falhou!\n\n"FIM_COR);
 
                     free(cadastro_username);
                     free(cadastro_senha);
                     free(cadastro_nome);
-                    printf("[ 0 ] - Continuar\n\n");
+                    printf(AZUL"[ 0 ] - Continuar\n\n"FIM_COR);
                     get_opcao(1);
                     break;
                 }

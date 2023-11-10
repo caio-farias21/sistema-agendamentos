@@ -5,19 +5,21 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define msg_inicial_linhas  8
-#define msg_inicial_colunas 60
+#define TEXTO_PRIMARIO "\e[1;34m"
+#define NORMAL "\e[0m"
 
+#define msg_inicial_linhas  8
+#define msg_inicial_colunas 70
 
 char msg_incial[msg_inicial_linhas][msg_inicial_colunas] = {
-	"      _____         _____     _____     _____     _____   ",
+	TEXTO_PRIMARIO"      _____         _____     _____     _____     _____   ",
     "     |         |   |         |     |   |         |        ",
     "     |         |   |         |     |   |         |        ",
-    "     |_____    |   |_____    |_____|   |  ___    |_____   ",
+    TEXTO_PRIMARIO"     |_____    |   |_____    |_____|   |  ___    |_____   ",
     "           |   |         |   |     |   |     |   |        ",
     "           |   |         |   |     |   |     |   |        ",
-    "     ______|   |   ______|   |     |   |_____|   |_____   "
-};
+    TEXTO_PRIMARIO"     ______|   |   ______|   |     |   |_____|   |_____   "
+NORMAL};
 
 char matriz_booleana[msg_inicial_linhas][msg_inicial_colunas];
 
@@ -59,31 +61,34 @@ void left_to_right(void){
 
 int get_opcao(int limite) {
     int n;
+    char c;
     while (1) {
         printf("Selecione uma opção: ");
-        scanf("%d%*c", &n);
-        if (n >= 0 && n < limite)
+        scanf("%d", &n);
+        if (n >= 0 && n < limite) {
+            while(c = fgetc(stdin) != '\n' && c != EOF);
             return n;
+        }
+        else {
+            while(c = fgetc(stdin) != '\n' && c != EOF);
+        }
     }
 }
 
 string get_string(string mensagem) {
     char c;
     string str = (char*) malloc(16);
-    if (str == NULL) {
-        free(str);
+    if (str == NULL)
         return NULL;
-    }
-    long unsigned int tamanho = 0;
 
+    long unsigned int tamanho = 0;
     do {
         printf("%s", mensagem);
         while ((c = fgetc(stdin)) != '\n' && c != EOF) {
             str = (char*) realloc(str, tamanho + 1);
-            if (str == NULL) {
-                free(str);
+            if (str == NULL)
                 return NULL;
-            }
+
             str[tamanho++] = c;
         }
     } while (tamanho == 0);
